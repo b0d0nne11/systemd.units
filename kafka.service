@@ -1,0 +1,9 @@
+[Unit]
+Description=Kafka
+Documentation=https://kafka.apache.org/documentation.html
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=/usr/bin/docker pull spotify/kafka:latest
+ExecStart=/usr/bin/docker run --rm --name kafka -p 2181:2181 -p 9092:9092 --env ADVERTISED_HOST=${DOCKER_IP} --env ADVERTISED_PORT=9092 spotify/kafka:latest
+ExecStop=/usr/bin/docker stop kafka

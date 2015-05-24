@@ -1,0 +1,9 @@
+[Unit]
+Description=MongoDB
+Documentation=http://docs.mongodb.org/manual/
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=/usr/bin/docker pull mongo:latest
+ExecStart=/usr/bin/docker run --rm --name mongod -p 27017:27017 mongo:latest
+ExecStop=/usr/bin/docker stop mongod
