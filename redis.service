@@ -5,5 +5,6 @@ Documentation=http://redis.io/documentation
 [Service]
 TimeoutStartSec=0
 ExecStartPre=/usr/bin/docker pull redis:latest
+ExecStartPre=-/usr/bin/docker rm -f redis
 ExecStart=/usr/bin/docker run --rm --name redis -p 6379:6379 redis:latest
 ExecStop=/usr/bin/docker stop redis

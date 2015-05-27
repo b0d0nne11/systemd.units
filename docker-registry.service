@@ -6,5 +6,6 @@ Documentation=https://registry.hub.docker.com/u/pallet/registry-swift/
 TimeoutStartSec=0
 EnvironmentFile=-/etc/sysconfig/docker-registry
 ExecStartPre=/usr/bin/docker pull pallet/registry-swift:latest
+ExecStartPre=-/usr/bin/docker rm -f docker-registry
 ExecStart=/usr/bin/docker run --rm --name docker-registry -p 5000:5000 -e SETTINGS_FLAVOR=swift -e OS_CONTAINER="${OS_CONTAINER}" -e OS_USERNAME="${OS_USERNAME}" -e OS_PASSWORD="${OS_PASSWORD}" -e OS_AUTH_URL="${OS_AUTH_URL}" -e OS_REGION_NAME="${OS_REGION_NAME}" -e OS_TENANT_NAME="${OS_TENANT_NAME}" pallet/registry-swift:latest
 ExecStop=/usr/bin/docker stop docker-registry

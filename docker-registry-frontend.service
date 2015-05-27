@@ -5,5 +5,6 @@ Documentation=https://registry.hub.docker.com/u/konradkleine/docker-registry-fro
 [Service]
 TimeoutStartSec=0
 ExecStartPre=/usr/bin/docker pull konradkleine/docker-registry-frontend:latest
+ExecStartPre=-/usr/bin/docker rm -f docker-registry-frontend
 ExecStart=/usr/bin/docker run --rm --name docker-registry-frontend -p 5001:80 -e ENV_DOCKER_REGISTRY_HOST=${DOCKER_IP} -e ENV_DOCKER_REGISTRY_PORT=5000 konradkleine/docker-registry-frontend:latest
 ExecStop=/usr/bin/docker exec docker-registry-frontend /usr/sbin/apache2ctl stop
